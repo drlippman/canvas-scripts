@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="canvassearch.js"></script>
+<style type="text/css">
+body {
+	font-family: sans-serif;
+}
+ul {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<h2>Canvas Search-and-Replace Tool</h2>
+<p>This tool allows you to do search-and-replace across multiple pages, assignments, quizzes,
+ and files in Instructure's Canvas.</p>
+
+<p>First we need an access token. You can generate one by clicking on the Settings link in the upper right,
+then clicking "New Access Token" at the bottom of the page.<br/>
+<input type="text" id="token" size="80" value=""/></p>
+
+<p>What is your course ID number? <input type="text" id="cid" size="10" value=""/></p>
+
+<p>What is your domain (like school.instructure.com)? <input type="text" id="domain" size="30" value=""/></p>
+
+<p>What kind of item do you want to change? 
+  <select id="tochg" onchange="updateTochg(this)">
+  	<option value="none">Select...</option>
+  	<option value="assignments">Assignments</option>
+  	<option value="pages">Pages</option>
+  	<option value="files">Files</option>
+  	<option value="quizzes">Quizzes</option>
+  	<option value="discuss">Discussion Topics</option>
+  </select></p>
+  
+<div id="itemselbox" style="display:none;">
+  <p>Select items to change:  <a href="#" onclick="return chkall(1)">All</a> <a href="#" onclick="return chkall(0)">None</a></p>
+  <ul id="itemsellist">
+  </ul>
+</div>
+
+<p id="itemtochgbox" style="display:none;">Select attribute to change: 
+  <select id="attrsel" onchange="updateAttrSel(this)">
+  </select>
+</p>
+
+<p id="mcbox" style="display:none;"></p>
+<div id="textchgbox" style="display:none;">
+	<p>How to modify text:
+	<select id="txtchgmethod" onchange="updateTxtChg(this)">
+		<option value="searchreplace">Basic Search and Replace</option>
+		<option value="replace">Replace existing text</option>
+		<option value="append">Append to existing text</option>
+		<option value="regex">Regular expression search and replace</option>
+	</select></p>
+	
+	<p id="searchreplace">
+		Search for <input type="text" size="50" id="searchfor" /><br/>
+		and replace with <input type="text" size="50" id="replacewith" />
+	</p>
+	<p id="replace" style="display:none;">
+		Replace all existing text with:<br/>
+		<textarea id="replacetxt" rows="6" cols="80"></textarea>
+	</p>
+	<p id="append" style="display:none;">
+		Append to existing text:<br/>
+		<textarea id="appendtxt" rows="6" cols="80"></textarea>
+	</p>
+	<p id="regex" style="display:none;">
+		Search with regular expression: /<input type="text" size="50" id="regexsearch"/>/<br/>
+		and replace with: <input type="text" size="50" id="regexreplace"/>
+	</p>
+	<p>
+	   <input type="button" value="Test on first item" onclick="testrun()"/> 
+	</p>
+</div>
+
+<input id="exbtn" type="button" value="Execute on course" onclick="runchange()" style="display:none;"/>
+
+<div id="testout"></div>
+<p>&nbsp;</p>
+<hr/>
+<p style="font-size:80%">Disclaimer:  This tool is provided free without any warranty or any claim of 
+fitness for any purpose.  <b>Make sure you have a backup of your Canvas course before using this</b>, in case
+it accidentally overwrites all your items or mangles them in some way.</p>
+</body>
+</html>
