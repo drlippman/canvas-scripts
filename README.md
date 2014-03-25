@@ -44,9 +44,14 @@ Common Cartridge
 This folder contains scripts for generating or modifying common cartridge files,
 including using Canvas's extensions to create modules.
 
-_canvasbase.zip_  
-An empty cartridge with some of the necessary junk that Canvas needs to process
-it correctly.  This gets used in some of the scripts.
+_canvasbase.zip, canvasbase2.zip_  
+Empty cartridges with some of the necessary junk that Canvas needs to process
+it correctly.  These gets used in some of the scripts.  canvasbase2.zip has 
+special markers added for replacement.  canvasbase.zip has no imsmanifest or
+module_meta.
+
+_simpleimport.php_
+An example of how to import a collection of HTML content as Canvas wiki pages.
 
 _fwktocanvas3.php_  
 Designed to take a file archive from 2012books.lardbucket.org and convert the
