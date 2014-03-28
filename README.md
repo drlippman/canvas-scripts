@@ -23,6 +23,12 @@ item types, without having to adjust the code everytime.  There is a copy of
 this [on my website](http://www.imathas.com/canvas/canvassearch.html), but you
 really should only trust a version you host yourself with your Canvas token.
 
+_addoutcomes.php_
+A script for adding outcome to an outcome group, loaded from a CSV file.
+
+_liststudents.php_
+Lists the students, with email addresses, for a course.
+
 QTI
 ---
 This folder contains some scripts for generating QTI files.  These are not
